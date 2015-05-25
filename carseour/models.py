@@ -1,9 +1,10 @@
-{% extends "class.template" %}
-{% block class_methods %}
-    def get_wheels(self):
+import carseour.definitions
+
+class GameInstance(carseour.definitions.GameInstance):
+    def wheels(self):
         wheels = []
 
-        for i in range(0, TYRE_MAX):
+        for i in range(0, carseour.definitions.TYRE_MAX):
             wheels.append({
                 'tyre': {
                     'flags': self.mTyreFlags[i],
@@ -34,4 +35,13 @@
             })
 
         return wheels
-{% endblock %}
+
+    def players(self):
+        players = []
+
+        for participant in self.mParticipantInfo:
+            if len(participant.mName) > 0:
+                players.append(participant)
+
+        return players
+
