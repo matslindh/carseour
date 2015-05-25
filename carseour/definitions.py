@@ -136,6 +136,19 @@ CRASH_DAMAGE_SPINNING = 3
 CRASH_DAMAGE_ROLLING = 4
 CRASH_MAX = 5
 
+class ParticipantInfo(ctypes.Structure):
+    _fields_ = [
+        ('mIsActive', ctypes.c_bool),
+        ('mName', ctypes.c_char * STRING_LENGTH_MAX),
+        ('mWorldPosition', ctypes.c_float * VEC_MAX),
+        ('mCurrentLapDistance', ctypes.c_float),
+        ('mRacePosition', ctypes.c_uint),
+        ('mLapsCompleted', ctypes.c_uint),
+        ('mCurrentLap', ctypes.c_uint),
+        ('mCurrentSector', ctypes.c_uint),
+    ]
+    
+
 class GameInstance(ctypes.Structure):
     _fields_ = [
         ('mVersion', ctypes.c_uint),
@@ -243,18 +256,38 @@ class GameInstance(ctypes.Structure):
     ]
     
 
+    def get_wheels(self):
+        wheels = []
 
+        for i in range(0, TYRE_MAX):
+            wheels.append({
+                'tyre': {
+                    'flags': self.mTyreFlags[i],
+                    'y': self.mTyreY[i],
+                    'rps': self.mTyreRPS[i],
+                    'slip_speed': self.mTyreSlipSpeed[i],
+                    'temp': self.mTyreTemp[i],
+                    'grip': self.mTyreGrip[i],
+                    'height_above_ground': self.mTyreHeightAboveGround[i],
+                    'lateral_stiffness': self.mTyreLateralStiffness[i],
+                    'wear': self.mTyreWear[i],
+                    'thread_temp': self.mTyreTreadTemp[i],
+                    'layer_temp': self.mTyreLayerTemp[i],
+                    'carcass_temp': self.mTyreCarcassTemp[i],
+                    'rim_temp': self.mTyreRimTemp[i],
+                    'internal_air_temp': self.mTyreInternalAirTemp[i],
+                },
+                'suspension': {
+                    'damage': self.mSuspensionDamage[i],
+                },
+                'brakes': {
+                    'damage': self.mBrakeDamage[i],
+                    'temp_celcius': self.mBrakeTempCelsius[i],
+                },
+                'terrain': {
+                    'lookup_value': self.mTerrain[i],
+                },
+            })
 
-class ParticipantInfo(ctypes.Structure):
-    _fields_ = [
-        ('mIsActive', ctypes.c_bool),
-        ('mName', ctypes.c_char * STRING_LENGTH_MAX),
-        ('mWorldPosition', ctypes.c_float * VEC_MAX),
-        ('mCurrentLapDistance', ctypes.c_float),
-        ('mRacePosition', ctypes.c_uint),
-        ('mLapsCompleted', ctypes.c_uint),
-        ('mCurrentLap', ctypes.c_uint),
-        ('mCurrentSector', ctypes.c_uint),
-    ]
-    
+        return wheels
 
