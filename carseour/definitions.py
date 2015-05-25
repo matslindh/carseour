@@ -256,38 +256,3 @@ class GameInstance(ctypes.Structure):
     ]
     
 
-    def get_wheels(self):
-        wheels = []
-
-        for i in range(0, TYRE_MAX):
-            wheels.append({
-                'tyre': {
-                    'flags': self.mTyreFlags[i],
-                    'y': self.mTyreY[i],
-                    'rps': self.mTyreRPS[i],
-                    'slip_speed': self.mTyreSlipSpeed[i],
-                    'temp': self.mTyreTemp[i],
-                    'grip': self.mTyreGrip[i],
-                    'height_above_ground': self.mTyreHeightAboveGround[i],
-                    'lateral_stiffness': self.mTyreLateralStiffness[i],
-                    'wear': self.mTyreWear[i],
-                    'thread_temp': self.mTyreTreadTemp[i],
-                    'layer_temp': self.mTyreLayerTemp[i],
-                    'carcass_temp': self.mTyreCarcassTemp[i],
-                    'rim_temp': self.mTyreRimTemp[i],
-                    'internal_air_temp': self.mTyreInternalAirTemp[i],
-                },
-                'suspension': {
-                    'damage': self.mSuspensionDamage[i],
-                },
-                'brakes': {
-                    'damage': self.mBrakeDamage[i],
-                    'temp_celcius': self.mBrakeTempCelsius[i],
-                },
-                'terrain': {
-                    'lookup_value': self.mTerrain[i],
-                },
-            })
-
-        return wheels
-
