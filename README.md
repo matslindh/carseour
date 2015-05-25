@@ -3,6 +3,8 @@ Python interface to extract information from the local Project Cars API.
 
 carseour is developed against Python 3.4+, but might run under python 2.7.
 
+carseour is licensed under the MIT license (see [LICENSE](https://github.com/matslindh/carseour/blob/master/LICENSE)).
+
 ## Usage
 Shared Memory must be activated in Project Cars by setting the "User Shared Memory" option under Options / Visuals / Hardware to YES.
 
