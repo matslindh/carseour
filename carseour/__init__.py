@@ -1,5 +1,6 @@
 import mmap
-from carseour.definitions import GameInstance, SHARED_MEMORY_VERSION
+from carseour.models import GameInstance
+from carseour.definitions import SHARED_MEMORY_VERSION
 
 def _get_mmapped():
     # could we use ctypes.sizeof(GameInstance) instead here? A too large value results in access denied,
