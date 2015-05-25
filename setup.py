@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(name='carseour',
       version='0.2',
@@ -8,4 +8,5 @@ setup(name='carseour',
       author_email='mats@lindh.no',
       url='https://github.com/matslindh/carseour/',
       keywords='games racing projectcars',
+      packages=find_packages(),      
      )
