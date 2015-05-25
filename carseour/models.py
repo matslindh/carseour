@@ -45,3 +45,18 @@ class GameInstance(carseour.definitions.GameInstance):
 
         return players
 
+    def standing(self):
+        standing = []
+
+        for player in self.players():
+            standing.append({
+                'name': player.mName.decode("iso-8859-1"),
+                'position': player.mRacePosition,
+                'lap': player.mCurrentLap,
+                'lap_distance': player.mCurrentLapDistance,
+                'laps_completed': player.mLapsCompleted,
+            })
+
+        standing = sorted(standing, key=lambda player: player['position'])
+
+        return standing
