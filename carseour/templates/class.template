@@ -1,0 +1,7 @@
+class {{class_name}}(ctypes.Structure):
+    _fields_ = [{% for field in fields: %}
+        ('{{ field['name'] }}', {{ field['ctypes_type'] if field['type'][0].upper() != field['type'][0] else field['type'] }}{{ ' * ' ~ field['array_size'] if field is array_definition }}),{% endfor %}
+    ]
+    
+{% block class_methods %}{% endblock %}
+

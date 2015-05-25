@@ -1,0 +1,4 @@
+{% extends "class.template" %}
+{% block class_methods %}
+
+{% endblock %}
