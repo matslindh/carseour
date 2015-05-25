@@ -11,7 +11,11 @@ Shared Memory must be activated in Project Cars by setting the "User Shared Memo
 ```python
 import carseour
 
-game = carseour.get_live()
+# get a live view of the game - this is backed straight from the game's memory, and is updated for each rendered frame
+game = carseour.live()
+
+# get a snapshot of the state of the game - this reads the memory and copies it before returning the object.
+game = carseour.snapshot()
 
 # print current speed of vehicle
 print(game.mSpeed)

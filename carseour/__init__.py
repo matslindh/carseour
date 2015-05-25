@@ -15,10 +15,10 @@ def _validate_instance(instance):
 
     return instance
 
-def get_live():
+def live():
     return _validate_instance(GameInstance.from_buffer(_get_mmapped()))
 
-def get_snapshot():
+def snapshot():
     return _validate_instance(GameInstance.from_buffer_copy(_get_mmapped()))
 
 class InvalidSharedMemoryVersionException(Exception):
